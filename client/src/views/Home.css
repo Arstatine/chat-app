@@ -1,0 +1,395 @@
+.title {
+  margin-bottom: 20px;
+}
+
+.login-page {
+  background-image: url(../assets/img2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.form {
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+  background: #fefefe;
+  max-width: 500px;
+  margin: 0 auto 100px;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  outline: 0;
+  background: #d0d0d0;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+.form .btn {
+  border-radius: 5px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4caf50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 18px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form .btn:hover,
+.form .btn:active,
+.form .btn:focus {
+  background: #43a047;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 16px;
+}
+.form .message a {
+  color: #4caf50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: block;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before,
+.container:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #ef3b3a;
+}
+
+.link {
+  color: #43a047;
+  font-weight: 100;
+  font-size: 18px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* home */
+#main {
+  width: 100%;
+  padding: 0;
+}
+.content-asset p {
+  margin: 0 auto;
+}
+.breadcrumb {
+  display: none;
+}
+
+/* Helpers */
+/**************************/
+.margin-top-10 {
+  padding-top: 10px;
+}
+.margin-bot-10 {
+  padding-bottom: 10px;
+}
+
+/* Typography */
+/**************************/
+#parallax-world-of-ugg h1 {
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: black;
+  padding: 0;
+  margin: 0;
+}
+#parallax-world-of-ugg h2 {
+  font-size: 70px;
+  letter-spacing: 10px;
+  text-align: center;
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  z-index: 10;
+  opacity: 0.9;
+}
+#parallax-world-of-ugg h3 {
+  font-size: 14px;
+  line-height: 0;
+  font-weight: 400;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: black;
+}
+#parallax-world-of-ugg p {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+.first-character {
+  text-align: center;
+  font-weight: 400;
+  font-size: 48px;
+  width: 100%;
+  line-height: 64px;
+  word-break: break-all;
+}
+
+.sc {
+  color: #3b8595;
+}
+.ny {
+  color: #3b8595;
+}
+.atw {
+  color: #3b8595;
+}
+
+/* Section - Title */
+/**************************/
+#parallax-world-of-ugg .title {
+  background: white;
+  padding: 60px;
+  margin: 0 auto;
+  text-align: center;
+}
+#parallax-world-of-ugg .title h1 {
+  font-size: 35px;
+  letter-spacing: 8px;
+}
+
+/* Section - Block */
+/**************************/
+#parallax-world-of-ugg .block {
+  background: white;
+  padding: 60px;
+  width: 820px;
+  margin: 0 auto;
+  text-align: justify;
+}
+#parallax-world-of-ugg .block-gray {
+  background: #f2f2f2;
+  padding: 60px;
+}
+#parallax-world-of-ugg .section-overlay-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.7;
+}
+
+/* Section - Parallax */
+/**************************/
+#parallax-world-of-ugg .parallax-one {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-image: url(../assets/img4.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+#parallax-world-of-ugg .parallax-two {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-image: url(../assets/img5.jpg);
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#parallax-world-of-ugg .parallax-three {
+  padding-top: 200px;
+  padding-bottom: 200px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background-image: url(../assets/img3.png);
+  background-attachment: fixed;
+  background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Extras */
+/**************************/
+#parallax-world-of-ugg .line-break {
+  border-bottom: 1px solid black;
+  width: 150px;
+  margin: 0 auto;
+}
+
+/* Media Queries */
+/**************************/
+@media screen and (max-width: 959px) and (min-width: 768px) {
+  #parallax-world-of-ugg .block {
+    padding: 40px;
+    width: 620px;
+  }
+}
+@media screen and (max-width: 767px) {
+  #parallax-world-of-ugg .block {
+    padding: 30px;
+    width: 420px;
+  }
+  #parallax-world-of-ugg h2 {
+    font-size: 30px;
+  }
+  #parallax-world-of-ugg .block {
+    padding: 30px;
+  }
+  #parallax-world-of-ugg .parallax-one,
+  #parallax-world-of-ugg .parallax-two,
+  #parallax-world-of-ugg .parallax-three {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+}
+@media screen and (max-width: 479px) {
+  #parallax-world-of-ugg .block {
+    padding: 30px 15px;
+    width: 290px;
+  }
+}
+
+.profile-pic {
+  background-image: url(../assets/person-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  min-width: 50%;
+  aspect-ratio: 1/1;
+}
+
+.link-btn {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 20px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.link-btn-back {
+  text-align: start;
+  font-size: 20px;
+  color: #1a1a1a;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.link-btn-back a {
+  position: absolute;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.link-btn-back a:hover {
+  color: #3d3c3a;
+}
+
+.footer-profile ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-profile ul li {
+  list-style: none;
+  font-size: 32px;
+  margin: 0 10px;
+}
+
+.footer-profile ul li a {
+  color: #222;
+}
+
+.footer-profile ul li a:hover {
+  color: #444;
+}
+
+.bold-700 {
+  font-weight: 700;
+}
+
+.bold-700 a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bold-700 a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  height: 80px;
+  background-color: #3b8595;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer p {
+  font-size: 18px !important;
+}
