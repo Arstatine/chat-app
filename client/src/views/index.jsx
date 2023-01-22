@@ -1,5 +1,6 @@
 import React from 'react';
 import { Icon } from '@iconify/react';
+import './Home.css';
 
 export default function Home() {
   return (
@@ -30,10 +31,9 @@ export default function Home() {
 
       <section>
         <div className='block'>
-          <p>
-            <div className='first-character sc'>About</div>
-            <p className='line-break margin-top-10'></p>
-            <br />
+          <div className='first-character sc '>About</div>
+          <hr />
+          <p className='margin-top-10'>
             Chat App is a messaging web application that connects users from all
             over the world. With its user-friendly interface and real-time
             messaging feature, Chat App makes it easy for people to communicate
@@ -64,10 +64,9 @@ export default function Home() {
 
       <section>
         <div className='block'>
-          <p>
-            <div className='first-character ny'>Contact Us</div>
-            <p className='line-break margin-top-10'></p>
-            <br />
+          <div className='first-character ny'>Contact Us</div>
+          <hr />
+          <p className='margin-top-10'>
             Breaking into the New York fashion world is no easy task. But by the
             early 2000's, UGG Australia began to take it by storm. The evolution
             of UGG from a brand that made sheepskin boots, slippers, clogs and
@@ -80,7 +79,7 @@ export default function Home() {
             desire for premium casual fashion was popping up all over the world
             and UGG was now perfectly aligned with this movement.
           </p>
-          <p className='line-break margin-top-10'></p>
+          <br />
           <p className='margin-top-10'>
             Fueled by celebrities from coast to coast wearing UGG boots and
             slippers on their downtime, an entirely new era of fashion was
@@ -107,18 +106,17 @@ export default function Home() {
 
       <section>
         <div className='block'>
-          <p>
-            <div className='first-character atw'>Developer</div>
-            <p className='line-break margin-top-10'></p>
-            <br />
-            <center>
-              <div className='profile-pic'></div>
-            </center>
-            <br />
-            <center>
-              <h1>Xenon Vergara</h1>
-            </center>
-            <p className='margin-top-10'></p>
+          <div className='first-character atw'>Developer</div>
+          <hr />
+          <br />
+          <div className='center-text'>
+            <div className='profile-pic'></div>
+          </div>
+          <br />
+          <div className='center-text'>
+            <h1>Xenon Vergara</h1>
+          </div>
+          <p className='margin-top-10'>
             Hi, I'm Xenon Vergara a freelance web developer and web designer
             with a strong passion for creating visually stunning and functional
             websites. Attention to detail, ability to deliver projects on time,
@@ -127,7 +125,8 @@ export default function Home() {
             existing one, I have the skills and experience to bring your vision
             to life.
           </p>
-          <p className='line-break margin-top-10'></p>
+          <br />
+          <hr />
           <div className='margin-top-10 footer-profile'>
             <ul>
               <li>
