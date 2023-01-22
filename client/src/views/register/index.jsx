@@ -8,6 +8,7 @@ const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleRegisterForm = async (e) => {
     e.preventDefault();
@@ -19,10 +20,15 @@ const RegisterPage = () => {
       password,
     });
 
-    setName('');
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    if (response.data?.err) {
+      setError(response.data?.err);
+    } else {
+      setError('');
+      setName('');
+      setUsername('');
+      setEmail('');
+      setPassword('');
+    }
   };
 
   return (
@@ -41,6 +47,7 @@ const RegisterPage = () => {
           <br />
           <br />
           <h1 className='title'>Create an Account</h1>
+          {error}
           <input
             type='text'
             name='name'
