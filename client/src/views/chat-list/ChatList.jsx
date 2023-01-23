@@ -12,6 +12,8 @@ export default function ChatList() {
     setMenuClick(false);
   };
 
+  const id = 'idnumber';
+
   return (
     <div className={styles.body}>
       <div className={styles.wrapper}>
@@ -52,101 +54,126 @@ export default function ChatList() {
         </div>
 
         <div className={styles.chatList}>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2017/04/01/21/06/portrait-2194457_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.offline}>Offline</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2016/11/22/21/42/woman-1850703_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
-          </a>
-          <a href='/#' className={styles.chatMember}>
-            <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
-              alt='profile'
-              className={styles.circle}
-            />
-            &nbsp;&nbsp;&nbsp;Xenon Vergara
+          <a href={'/messages/' + id} className={styles.chatMember}>
+            <div className={styles.profileName}>
+              <img
+                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
+                alt='profile'
+                className={styles.circle}
+              />
+              &nbsp;&nbsp;&nbsp;Xenon Vergara
+            </div>
+            <div className={styles.online}>Online</div>
           </a>
         </div>
       </div>
