@@ -51,7 +51,14 @@ export default function Home() {
             Chat App!
           </p>
           <div className='margin-top-10 bold-700'>
-            GitHub Link: <a href='/'>hell</a>
+            GitHub:{' '}
+            <a
+              href='https://github.com/Arstatine/chat-app'
+              target='_blank'
+              rel='noreferrer'
+            >
+              https://github.com/Arstatine/chat-app
+            </a>
           </div>
         </div>
       </section>
