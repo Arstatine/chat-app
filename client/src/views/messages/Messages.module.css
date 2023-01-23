@@ -56,7 +56,9 @@
 }
 
 .backBtn:hover {
-  background-color: #555;
+  opacity: 0.3;
+  background-color: #fff;
+  color: #3b8595;
 }
 
 .profileName {
@@ -141,7 +143,7 @@
   align-content: flex-end;
   background-color: #ddd;
   word-break: break-all;
-  border-radius: 15px;
+  border-radius: 5px;
   color: #222;
   max-width: 75%;
   padding: 15px;
@@ -152,7 +154,7 @@
   display: inline-block;
   background-color: #3b8595;
   word-break: break-all;
-  border-radius: 15px;
+  border-radius: 5px;
   color: #fff;
   max-width: 75%;
   padding: 15px;

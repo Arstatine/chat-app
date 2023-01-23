@@ -19,6 +19,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  pending: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  friends: {
+    type: Array,
+    default: [],
+    required: true,
+  },
+  isOnline: {
+    type: Boolean,
+    default: true,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: () => Date.now(),

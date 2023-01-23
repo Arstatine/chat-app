@@ -40,15 +40,15 @@ export default function Home() {
             with each other regardless of their location. Whether you're looking
             to chat with friends and family or connect with new people, Chat App
             is the perfect platform to do so. With a wide range of features such
-            as private chat, group chats and file sharing, Chat App offers an
-            engaging and interactive experience for its users. Overall, Chat App
-            is the perfect solution for anyone looking to stay connected with
-            friends and family, build a community, or conduct business. With its
-            real-time messaging, file sharing, and group functionality, it has
-            everything you need to stay engaged and productive. So why wait?
-            Sign up today and start connecting with people from around the globe
-            and start experiencing the power of real-time communication with
-            Chat App!
+            as private chat with an encrypted text messages to secure privacy,
+            Chat App offers an engaging and interactive experience for its
+            users. Overall, Chat App is the perfect solution for anyone looking
+            to stay connected with friends and family, build a community, or
+            conduct business. With its real-time messaging and encrypted text
+            message, it has everything you need to stay engaged and productive
+            with ease of mind about privacy matters. So why wait? Sign up today
+            and start connecting with people from around the globe and start
+            experiencing the power of real-time communication with Chat App!
           </p>
           <div className='margin-top-10 bold-700'>
             GitHub:{' '}
