@@ -27,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // routes
 app.use('/api/users', require('./routes/usersRoute'));
+app.use('/api/messages', require('./routes/messagesRoutes'));
 
 // port
 

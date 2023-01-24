@@ -397,3 +397,12 @@ footer p {
 .center-text {
   text-align: center;
 }
+
+.error {
+  background-color: rgb(223, 71, 89);
+  padding: 20px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+}

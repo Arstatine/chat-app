@@ -5,11 +5,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   email: {
     type: String,
     required: true,
@@ -19,19 +14,13 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pending: {
-    type: Array,
-    default: [],
-    required: true,
-  },
-  friends: {
-    type: Array,
-    default: [],
+  avatar: {
+    type: String,
     required: true,
   },
   isOnline: {
     type: Boolean,
-    default: true,
+    default: false,
     required: true,
   },
   createdAt: {

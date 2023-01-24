@@ -1,7 +1,49 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import styles from './ChatList.module.css';
+import axios from '../../lib/axiosConfig';
+import { Context } from '../../App';
+import { useNavigate } from 'react-router-dom';
+
 export default function ChatList() {
+  const navigate = useNavigate();
+  const auth = useContext(Context);
+
+  const [users, setUsers] = useState(null);
+  const [authUser, setAuthUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const res = await axios.get(`/api/users`);
+      if (res) {
+        setAuthUser(res.data);
+      }
+
+      if (!res.data?.isLoggedIn) return navigate('/login');
+    };
+
+    fetchUserInfo().catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const res = await axios.get(`/api/users/all`);
+      if (res.data.findUser.length) {
+        setUsers(res.data?.findUser);
+      } else {
+        setUsers(null);
+      }
+
+      if (!res.data?.isLoggedIn) return navigate('/login');
+    };
+
+    fetchUserInfo().catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    document.title = 'Chat List';
+  }, []);
+
   const [menuClick, setMenuClick] = useState(false);
 
   const handleDisplayMenu = () => {
@@ -12,7 +54,26 @@ export default function ChatList() {
     setMenuClick(false);
   };
 
-  const id = 'idnumber';
+  const handleSearch = async (e) => {
+    let key = e.target.value;
+    let keySearch = key.trim();
+
+    if (keySearch !== '') {
+      const res = await axios.get(`/api/users/search/${keySearch}`);
+      if (res.data.findUser.length) {
+        setUsers(res.data?.findUser);
+      } else {
+        setUsers(null);
+      }
+    } else {
+      setUsers(null);
+    }
+  };
+
+  const handleLogout = async () => {
+    await axios.get(`/api/users/logout`);
+    navigate('/login');
+  };
 
   return (
     <div className={styles.body}>
@@ -22,15 +83,13 @@ export default function ChatList() {
             <input
               type='text'
               className={styles.search}
-              placeholder='Search...'
+              placeholder='Search name or email'
+              onChange={handleSearch}
             />
             <span className={styles.searchIcon}>
               <Icon icon='uil:search' inline={true} />
             </span>
           </div>
-          <button type='button' className={styles.addFriend}>
-            <Icon icon='fa-solid:user-friends' inline={true} />
-          </button>
 
           {/* avatar */}
           <div
@@ -39,7 +98,7 @@ export default function ChatList() {
             onMouseLeave={handleLeaveOutside}
           >
             <img
-              src='https://cdn.pixabay.com/photo/2018/01/21/14/16/woman-3096664_960_720.jpg'
+              src={authUser?.findUser?.avatar}
               alt='profile'
               className={styles.avatar}
             />
@@ -48,133 +107,40 @@ export default function ChatList() {
               style={{ display: menuClick ? 'block' : 'none' }}
             >
               <a href='/#'>Profile</a>
-              <a href='/#'>Logout</a>
+              <a href='/login' onClick={handleLogout}>
+                Logout
+              </a>
             </div>
           </div>
         </div>
 
         <div className={styles.chatList}>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
+          {users?.map((user, index) => {
+            return (
+              <a
+                href={'/messages/' + user._id}
+                className={styles.chatMember}
+                key={index}
+              >
+                <div className={styles.profileName}>
+                  <img
+                    src={user.avatar}
+                    alt='profile'
+                    className={styles.circle}
+                  />
+                  &nbsp;&nbsp;&nbsp;{user.name}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;{user.email}
+                </div>
+                <div className={styles.online}>Chat Now!</div>
+              </a>
+            );
+          }) || (
+            <div className={styles.chatMember}>
+              <div className={styles.profileName}>No user found.</div>
+              <div className={styles.profileName}>Search Now!</div>
             </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.offline}>Offline</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
-          <a href={'/messages/' + id} className={styles.chatMember}>
-            <div className={styles.profileName}>
-              <img
-                src='https://cdn.pixabay.com/photo/2022/12/24/21/14/portrait-7676482_960_720.jpg'
-                alt='profile'
-                className={styles.circle}
-              />
-              &nbsp;&nbsp;&nbsp;Xenon Vergara
-            </div>
-            <div className={styles.online}>Online</div>
-          </a>
+          )}
         </div>
       </div>
     </div>

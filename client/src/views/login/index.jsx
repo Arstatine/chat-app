@@ -1,15 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../Home.css';
 import { Icon } from '@iconify/react';
+import { Context } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import axios from '../../lib/axiosConfig';
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const auth = useContext(Context);
+  const navigate = useNavigate();
 
-  const handleLoginForm = (e) => {
+  useEffect(() => {
+    if (auth.isLoggedIn) navigate('/chat-list');
+  }, [auth, navigate]);
+
+  useEffect(() => {
+    document.title = 'Login';
+  }, []);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLoginForm = async (e) => {
     e.preventDefault();
-    console.log(username);
-    console.log(password);
+
+    const res = await axios.post('/api/users/login', {
+      email: email,
+      password: password,
+    });
+
+    if (!res.data?.err) {
+      setError('');
+      navigate('/chat-list');
+    } else {
+      setError(res.data?.err);
+      return;
+    }
   };
 
   return (
@@ -28,12 +54,13 @@ const LoginPage = () => {
           <br />
           <br />
           <h1 className='title'>Login</h1>
+          {error && <div className='error'>{error}</div>}
           <input
-            type='text'
-            placeholder='Username'
-            name='username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type='email'
+            placeholder='Email'
+            name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type='password'

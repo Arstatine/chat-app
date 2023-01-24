@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import '../Home.css';
 import { Icon } from '@iconify/react';
 import axios from '../../lib/axiosConfig';
+import { Context } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
+  const auth = useContext(Context);
+
+  useEffect(() => {
+    if (auth.isLoggedIn) navigate('/chat-list');
+  }, [auth, navigate]);
+
+  useEffect(() => {
+    document.title = 'Register';
+  }, []);
+
   const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,7 +27,6 @@ const RegisterPage = () => {
 
     const response = await axios.post('/api/users', {
       name,
-      username,
       email,
       password,
     });
@@ -25,7 +36,6 @@ const RegisterPage = () => {
     } else {
       setError('');
       setName('');
-      setUsername('');
       setEmail('');
       setPassword('');
     }
@@ -47,21 +57,14 @@ const RegisterPage = () => {
           <br />
           <br />
           <h1 className='title'>Create an Account</h1>
-          {error}
+          {error && <div className='error'>{error}</div>}
+
           <input
             type='text'
             name='name'
             placeholder='Name'
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            type='text'
-            name='username'
-            placeholder='Username'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
