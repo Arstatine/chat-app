@@ -1,18 +1,38 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../App';
+import HashLoader from 'react-spinners/HashLoader';
 
 export default function Home() {
   const auth = useContext(Context);
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     if (auth.isLoggedIn) navigate('/chat-list');
   }, [auth, navigate]);
 
-  return (
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  return isLoading ? (
+    <div className='centerLoading'>
+      <HashLoader
+        color={'#3b8595'}
+        loading={isLoading}
+        size={150}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
+  ) : (
     <div id='parallax-world-of-ugg'>
       <section>
         <div className='title'>

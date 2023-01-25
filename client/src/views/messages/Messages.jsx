@@ -9,6 +9,7 @@ import { io } from 'socket.io-client';
 import { motion } from 'framer-motion';
 import Modal from '../../components/modal/Modal';
 import CryptoJS from 'crypto-js';
+import HashLoader from 'react-spinners/HashLoader';
 
 export default function Messages() {
   const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
@@ -19,6 +20,8 @@ export default function Messages() {
   socket.current = io(SERVER_URL, {
     withCredentials: true,
   });
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const auth = useContext(Context);
   const [message, setMessage] = useState([]);
@@ -69,6 +72,7 @@ export default function Messages() {
   }, [user?.name]);
 
   useEffect(() => {
+    setIsLoading(true);
     if (senderID !== '' && to_id.to !== '') {
       const getMessage = async () => {
         const res = await axios.get(`/api/messages/${senderID}/${to_id.to}`);
@@ -77,6 +81,7 @@ export default function Messages() {
       };
 
       getMessage();
+      setIsLoading(false);
     }
   }, [senderID, to_id.to]);
 
@@ -184,7 +189,17 @@ export default function Messages() {
     return mes;
   };
 
-  return (
+  return isLoading ? (
+    <div className={styles.centerLoading}>
+      <HashLoader
+        color={'#3b8595'}
+        loading={isLoading}
+        size={150}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
+  ) : (
     user && (
       <div className={styles.body}>
         <Modal

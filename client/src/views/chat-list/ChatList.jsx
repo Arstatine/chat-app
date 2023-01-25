@@ -3,14 +3,20 @@ import { Icon } from '@iconify/react';
 import styles from './ChatList.module.css';
 import axios from '../../lib/axiosConfig';
 import { useNavigate } from 'react-router-dom';
+import HashLoader from 'react-spinners/HashLoader';
 
 export default function ChatList() {
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [users, setUsers] = useState(null);
   const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true);
+    document.title = 'Chat List';
+
     const fetchUserInfo = async () => {
       const res = await axios.get(`/api/users`);
       if (res) {
@@ -20,11 +26,7 @@ export default function ChatList() {
       if (!res.data?.isLoggedIn) return navigate('/login');
     };
 
-    fetchUserInfo().catch(console.error);
-  }, [navigate]);
-
-  useEffect(() => {
-    const fetchUserInfo = async () => {
+    const fetchAllUserInfo = async () => {
       const res = await axios.get(`/api/users/all`);
       if (res.data.findUser) {
         setUsers(res.data?.findUser);
@@ -35,12 +37,10 @@ export default function ChatList() {
       if (!res.data?.isLoggedIn) return navigate('/login');
     };
 
+    fetchAllUserInfo().catch(console.error);
     fetchUserInfo().catch(console.error);
+    setIsLoading(false);
   }, [navigate]);
-
-  useEffect(() => {
-    document.title = 'Chat List';
-  }, []);
 
   const [menuClick, setMenuClick] = useState(false);
 
@@ -78,7 +78,17 @@ export default function ChatList() {
     navigate('/login');
   };
 
-  return (
+  return isLoading ? (
+    <div className={styles.centerLoading}>
+      <HashLoader
+        color={'#3b8595'}
+        loading={isLoading}
+        size={150}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
+  ) : (
     <div className={styles.body}>
       <div className={styles.wrapper}>
         <div className={styles.header}>
