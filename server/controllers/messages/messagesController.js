@@ -13,7 +13,28 @@ const getMessage = async (req, res, next) => {
           users: { $all: [receiver, sender] },
         },
       ],
-    }).sort({ createdAt: 1 });
+    });
+
+    return res.json(findMessage);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteAll = async (req, res, next) => {
+  try {
+    const { sender, receiver } = req.params;
+
+    const findMessage = await Messages.deleteMany({
+      $or: [
+        {
+          users: { $all: [sender, receiver] },
+        },
+        {
+          users: { $all: [receiver, sender] },
+        },
+      ],
+    });
 
     return res.json(findMessage);
   } catch (error) {
@@ -37,4 +58,4 @@ const sendMessage = async (req, res, next) => {
   }
 };
 
-module.exports = { sendMessage, getMessage };
+module.exports = { sendMessage, getMessage, deleteAll };

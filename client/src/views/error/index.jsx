@@ -5,5 +5,9 @@ export default function NotFound() {
     document.title = 'Not Found';
   }, []);
 
-  return <div>Not Found</div>;
+  return (
+    <div>
+      <a href='/'>Back to home</a>
+    </div>
+  );
 }

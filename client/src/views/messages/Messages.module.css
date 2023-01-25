@@ -76,17 +76,20 @@
   font-size: 1.25rem;
 }
 
-.infoBtn {
+.deleteBtn {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #fff;
+  background: none;
+  outline: none;
+  border: none;
   cursor: pointer;
 }
 
-.infoBtn:hover {
-  color: #ddd;
+.deleteBtn:hover {
+  color: rgb(170, 41, 56);
 }
 
 .footer {
@@ -137,7 +140,7 @@
   margin-top: 10px;
   height: 73vh;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .receiver {
@@ -175,4 +178,60 @@
   justify-content: flex-end;
   align-items: center;
   margin: 10px;
+}
+
+.chatNow {
+  text-align: center;
+}
+
+.typingIndicatorContainer {
+  display: flex;
+  flex: none;
+  align-items: flex-end;
+}
+
+.typingIndicatorBubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 40px;
+  margin: 0px 8px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.typingIndicatorBubbleDot {
+  width: 4px;
+  height: 4px;
+  margin-right: 4px;
+  background-color: #555;
+  border-radius: 50%;
+  animation-name: bounce;
+  animation-duration: 1.3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.typingIndicatorBubbleDot:first-of-type {
+  margin: 0px 4px;
+}
+
+.typingIndicatorBubbleDot:nth-of-type(2) {
+  animation-delay: 0.15s;
+}
+
+.typingIndicatorBubbleDot:nth-of-type(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
 }

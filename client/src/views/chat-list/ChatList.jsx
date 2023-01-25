@@ -1,13 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 import styles from './ChatList.module.css';
 import axios from '../../lib/axiosConfig';
-import { Context } from '../../App';
 import { useNavigate } from 'react-router-dom';
 
 export default function ChatList() {
   const navigate = useNavigate();
-  const auth = useContext(Context);
 
   const [users, setUsers] = useState(null);
   const [authUser, setAuthUser] = useState(null);
@@ -23,12 +21,12 @@ export default function ChatList() {
     };
 
     fetchUserInfo().catch(console.error);
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       const res = await axios.get(`/api/users/all`);
-      if (res.data.findUser.length) {
+      if (res.data.findUser) {
         setUsers(res.data?.findUser);
       } else {
         setUsers(null);
@@ -38,7 +36,7 @@ export default function ChatList() {
     };
 
     fetchUserInfo().catch(console.error);
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     document.title = 'Chat List';
@@ -66,7 +64,12 @@ export default function ChatList() {
         setUsers(null);
       }
     } else {
-      setUsers(null);
+      const res = await axios.get(`/api/users/all`);
+      if (res.data.findUser) {
+        setUsers(res.data?.findUser);
+      } else {
+        setUsers(null);
+      }
     }
   };
 
@@ -106,7 +109,7 @@ export default function ChatList() {
               className={styles.dropdownContent}
               style={{ display: menuClick ? 'block' : 'none' }}
             >
-              <a href='/#'>Profile</a>
+              <a href='/#'>{authUser?.findUser?.name}</a>
               <a href='/login' onClick={handleLogout}>
                 Logout
               </a>
