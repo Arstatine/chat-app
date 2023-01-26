@@ -42,7 +42,7 @@ Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 ![image](https://user-images.githubusercontent.com/108978331/214774808-8fb14b6a-917e-4f2f-9681-8c801df6a6ad.png "Chat List using Search")
 
 ### Messages
-![image](https://user-images.githubusercontent.com/108978331/214774222-97f21ee8-32f2-4f58-a99b-77ca612476a1.png "No Messages")
+![image](https://user-images.githubusercontent.com/108978331/214774222-97f21ee8-32f2-4f58-a99b-77ca612476a1.png "No Message")
 ![image](https://user-images.githubusercontent.com/108978331/214774412-b93f6fef-0862-4e24-8ee7-599136ca79e8.png "Messages")
 
 ### Messages Typing
