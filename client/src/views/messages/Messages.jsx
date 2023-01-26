@@ -52,6 +52,38 @@ export default function Messages() {
   // if sender is typing
   const [isTyping, setIsTyping] = useState(false);
 
+  // get date
+  const getDate = (date) => {
+    const messageDate = new Date(date);
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const year = messageDate.getFullYear();
+    const month = months[messageDate.getMonth()];
+    const day = messageDate.getDate();
+    var hour = messageDate.getHours();
+    var min = messageDate.getMinutes();
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+    min = min < 10 ? '0' + min : min;
+
+    const textDate = `${month} ${day}, ${year} ${hour}:${min} ${ampm}`;
+
+    return textDate;
+  };
+
   var senderID = auth._id;
 
   // scroll to bottom
@@ -59,6 +91,10 @@ export default function Messages() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [message, isTyping]);
 
   // encrypt message
   const encryptMessage = (message) => {
@@ -72,22 +108,18 @@ export default function Messages() {
     return mes;
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [message, isTyping]);
-
+  // add user to socket server
   useEffect(() => {
     if (senderID != null) {
       socket?.current?.emit('add-user', senderID);
     }
   }, [senderID]);
 
-  useEffect(() => {
-    document.title = user?.name || 'Messages';
-  }, [user?.name]);
-
+  // fetch receiver and messages
   useEffect(() => {
     setIsLoading(true);
+    document.title = user?.name || 'Messages';
+
     if (receiverID.to !== '') {
       if (!isFetch) {
         fetchReceiverUser(receiverID.to);
@@ -110,22 +142,27 @@ export default function Messages() {
     senderID,
     receiverID.to,
     user?.err,
+    user?.name,
   ]);
 
+  // realtime message receive
   socket?.current?.on('receive-message', (data) => {
     if (data.sender === receiverID.to) {
-      addMessage(data.message, data.sender, data.receiver);
+      addMessage(data.message, data.sender, data.receiver, data.createdAt);
     }
   });
 
+  // sender typing
   socket?.current?.on('receive-typing', () => {
     setIsTyping(true);
   });
 
+  // sender not typing
   socket?.current?.on('receive-typing-off', () => {
     setIsTyping(false);
   });
 
+  // change text value
   const handleChangeText = (e) => {
     setTextMessage(e.target.value);
     if (e.target.value !== '') {
@@ -142,7 +179,7 @@ export default function Messages() {
 
     if (textMessage !== '') {
       sendMessage(mes, senderID, receiverID.to);
-      addMessage(mes, senderID, receiverID.to);
+      addMessage(mes, senderID, receiverID.to, new Date());
       setTextMessage('');
 
       socket?.current?.emit(
@@ -151,6 +188,7 @@ export default function Messages() {
           message: mes,
           sender: auth._id,
           receiver: receiverID.to,
+          createdAt: new Date(),
         },
         receiverID.to
       );
@@ -165,7 +203,7 @@ export default function Messages() {
       const mes = encryptMessage(textMessage);
 
       sendMessage(mes, senderID, receiverID.to);
-      addMessage(mes, senderID, receiverID.to);
+      addMessage(mes, senderID, receiverID.to, new Date());
       setTextMessage('');
 
       socket?.current?.emit(
@@ -174,6 +212,7 @@ export default function Messages() {
           message: mes,
           sender: auth._id,
           receiver: receiverID.to,
+          createdAt: new Date(),
         },
         receiverID.to
       );
@@ -182,6 +221,7 @@ export default function Messages() {
     }
   };
 
+  // delete whole conversation
   const handleDeleteConversation = async () => {
     deleteMessage(senderID, receiverID.to);
     setOpenModal(false);
@@ -250,6 +290,7 @@ export default function Messages() {
                           },
                         }}
                         className={styles.sender}
+                        title={getDate(mes.createdAt)}
                       >
                         {decryptMessage(mes.message)}
                       </motion.span>
@@ -275,6 +316,7 @@ export default function Messages() {
                         },
                       }}
                       className={styles.receiver}
+                      title={getDate(mes.createdAt)}
                     >
                       {decryptMessage(mes.message)}
                     </motion.span>

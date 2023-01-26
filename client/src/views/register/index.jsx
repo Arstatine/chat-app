@@ -9,19 +9,19 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const auth = useContext(Context);
 
+  // check if logged in
   useEffect(() => {
+    document.title = 'Register';
     if (auth.isLoggedIn) navigate('/chat-list');
   }, [auth, navigate]);
 
-  useEffect(() => {
-    document.title = 'Register';
-  }, []);
-
+  // states
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // on register form submit
   const handleRegisterForm = async (e) => {
     e.preventDefault();
 

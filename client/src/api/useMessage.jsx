@@ -20,7 +20,7 @@ const useMessage = create((set) => ({
       receiver,
     });
   },
-  addMessage: (message, sender, receiver) =>
+  addMessage: (message, sender, receiver, createdAt) =>
     set((state) => ({
       message: [
         ...state.message,
@@ -28,6 +28,7 @@ const useMessage = create((set) => ({
           message,
           sender,
           receiver,
+          createdAt,
         },
       ],
     })),

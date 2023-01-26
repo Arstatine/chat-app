@@ -11,16 +11,18 @@ export default function Home() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    if (auth.isLoggedIn) navigate('/chat-list');
-  }, [auth, navigate]);
-
+  // loaading...
   useEffect(() => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 3000);
   }, []);
+
+  // check if user logged in
+  useEffect(() => {
+    if (auth.isLoggedIn) navigate('/chat-list');
+  }, [auth, navigate]);
 
   return isLoading ? (
     <div className='centerLoading'>

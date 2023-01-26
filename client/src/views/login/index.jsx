@@ -9,18 +9,18 @@ const LoginPage = () => {
   const auth = useContext(Context);
   const navigate = useNavigate();
 
+  // chect if already logged in
   useEffect(() => {
+    document.title = 'Login';
     if (auth.isLoggedIn) navigate('/chat-list');
   }, [auth, navigate]);
 
-  useEffect(() => {
-    document.title = 'Login';
-  }, []);
-
+  // states
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // on login submit
   const handleLoginForm = async (e) => {
     e.preventDefault();
 

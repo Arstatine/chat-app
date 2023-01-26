@@ -12,15 +12,18 @@ export default function ChatList() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  // user api
   const users = useUser((state) => state.users, shallow);
   const fetchAllUser = useUser((state) => state.fetchAllUsers);
   const searchUsers = useUser((state) => state.searchUsers);
   const fetchUser = useUser((state) => state.fetchUser);
   const authUser = useUser((state) => state.auth);
 
+  // if fetch and auth
   const [isAuth, setIsAuth] = useState(false);
   const [isFetch, setIsFetch] = useState(false);
 
+  // fetch contact list and user info
   useEffect(() => {
     if (!isFetch) {
       fetchAllUser();
@@ -46,6 +49,7 @@ export default function ChatList() {
     return setIsLoading(false);
   }, [authUser, fetchAllUser, fetchUser, isAuth, isFetch, navigate, users]);
 
+  // menu
   const [menuClick, setMenuClick] = useState(false);
 
   const handleDisplayMenu = () => {
@@ -56,32 +60,25 @@ export default function ChatList() {
     setMenuClick(false);
   };
 
+  // search contacts
   const handleSearch = async (e) => {
     let key = e.target.value;
     let keySearch = key.trim();
 
     if (keySearch !== '') {
-      // const res = await axios.get(`/api/users/search/${keySearch}`);
-      // if (res.data.findUser.length) {
-      //   setUsers(res.data?.findUser);
-      // } else {
-      //   setUsers(null);
-      // }
       await searchUsers(keySearch);
     } else {
-      // const res = await axios.get(`/api/users/all`);
-      // if (res.data.findUser) {
-      //   setUsers(res.data?.findUser);
-      // } else {
-      //   setUsers(null);
-      // }
       await fetchAllUser();
     }
   };
 
-  const handleLogout = async () => {
-    await axios.get(`/api/users/logout`);
-    navigate('/login');
+  // logout
+  const handleLogout = () => {
+    setIsLoading(true);
+    setTimeout(async () => {
+      await axios.get(`/api/users/logout`);
+      navigate('/login');
+    }, 1500);
   };
 
   return isLoading ? (
@@ -126,9 +123,7 @@ export default function ChatList() {
               style={{ display: menuClick ? 'block' : 'none' }}
             >
               <a href='/#'>{authUser?.findUser?.name}</a>
-              <a href='/login' onClick={handleLogout}>
-                Logout
-              </a>
+              <div onClick={handleLogout}>Logout</div>
             </div>
           </div>
         </div>
