@@ -196,6 +196,7 @@
   display: flex;
   flex: none;
   align-items: flex-end;
+  margin: 10px 0;
 }
 
 .typingIndicatorBubble {
@@ -204,7 +205,7 @@
   justify-content: center;
   width: 52px;
   height: 40px;
-  margin: 0px 8px;
+  margin: 0px 10px;
   background-color: #ddd;
   border-radius: 5px;
 }

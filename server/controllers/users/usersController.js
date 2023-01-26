@@ -127,9 +127,6 @@ const userLogin = async (req, res, next) => {
 
       req.session.user_id = findUser._id.toJSON();
 
-      findUser.isOnline = true;
-      findUser.save();
-
       return res.json({ findUser, isLoggedIn: true });
     });
   } catch (e) {

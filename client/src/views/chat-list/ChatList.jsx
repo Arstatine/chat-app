@@ -4,43 +4,47 @@ import styles from './ChatList.module.css';
 import axios from '../../lib/axiosConfig';
 import { useNavigate } from 'react-router-dom';
 import HashLoader from 'react-spinners/HashLoader';
+import useUser from '../../api/useUser';
+import { shallow } from 'zustand/shallow';
 
 export default function ChatList() {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [users, setUsers] = useState(null);
-  const [authUser, setAuthUser] = useState(null);
+  const users = useUser((state) => state.users, shallow);
+  const fetchAllUser = useUser((state) => state.fetchAllUsers);
+  const searchUsers = useUser((state) => state.searchUsers);
+  const fetchUser = useUser((state) => state.fetchUser);
+  const authUser = useUser((state) => state.auth);
+
+  const [isAuth, setIsAuth] = useState(false);
+  const [isFetch, setIsFetch] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
+    if (!isFetch) {
+      fetchAllUser();
+      setIsFetch(true);
+    }
+
+    if (!isAuth) {
+      fetchUser();
+      setIsAuth(true);
+    }
+
+    if (authUser != null) {
+      if (authUser?.isLoggedIn === false) {
+        navigate('/login');
+      }
+    }
+
+    while (!users == null) {
+      setIsLoading(true);
+    }
+
     document.title = 'Chat List';
-
-    const fetchUserInfo = async () => {
-      const res = await axios.get(`/api/users`);
-      if (res) {
-        setAuthUser(res.data);
-      }
-
-      if (!res.data?.isLoggedIn) return navigate('/login');
-    };
-
-    const fetchAllUserInfo = async () => {
-      const res = await axios.get(`/api/users/all`);
-      if (res.data.findUser) {
-        setUsers(res.data?.findUser);
-      } else {
-        setUsers(null);
-      }
-
-      if (!res.data?.isLoggedIn) return navigate('/login');
-    };
-
-    fetchAllUserInfo().catch(console.error);
-    fetchUserInfo().catch(console.error);
-    setIsLoading(false);
-  }, [navigate]);
+    return setIsLoading(false);
+  }, [authUser, fetchAllUser, fetchUser, isAuth, isFetch, navigate, users]);
 
   const [menuClick, setMenuClick] = useState(false);
 
@@ -57,19 +61,21 @@ export default function ChatList() {
     let keySearch = key.trim();
 
     if (keySearch !== '') {
-      const res = await axios.get(`/api/users/search/${keySearch}`);
-      if (res.data.findUser.length) {
-        setUsers(res.data?.findUser);
-      } else {
-        setUsers(null);
-      }
+      // const res = await axios.get(`/api/users/search/${keySearch}`);
+      // if (res.data.findUser.length) {
+      //   setUsers(res.data?.findUser);
+      // } else {
+      //   setUsers(null);
+      // }
+      await searchUsers(keySearch);
     } else {
-      const res = await axios.get(`/api/users/all`);
-      if (res.data.findUser) {
-        setUsers(res.data?.findUser);
-      } else {
-        setUsers(null);
-      }
+      // const res = await axios.get(`/api/users/all`);
+      // if (res.data.findUser) {
+      //   setUsers(res.data?.findUser);
+      // } else {
+      //   setUsers(null);
+      // }
+      await fetchAllUser();
     }
   };
 
@@ -128,27 +134,29 @@ export default function ChatList() {
         </div>
 
         <div className={styles.chatList}>
-          {users?.map((user, index) => {
-            return (
-              <a
-                href={'/messages/' + user._id}
-                className={styles.chatMember}
-                key={index}
-              >
-                <div className={styles.profileName}>
-                  <img
-                    src={user.avatar}
-                    alt='profile'
-                    className={styles.circle}
-                  />
-                  &nbsp;&nbsp;&nbsp;{user.name}
-                  <br />
-                  &nbsp;&nbsp;&nbsp;{user.email}
-                </div>
-                <div className={styles.online}>Chat Now!</div>
-              </a>
-            );
-          }) || (
+          {users ? (
+            users?.map((user, index) => {
+              return (
+                <a
+                  href={'/messages/' + user._id}
+                  className={styles.chatMember}
+                  key={index}
+                >
+                  <div className={styles.profileName}>
+                    <img
+                      src={user.avatar}
+                      alt='profile'
+                      className={styles.circle}
+                    />
+                    &nbsp;&nbsp;&nbsp;{user.name}
+                    <br />
+                    &nbsp;&nbsp;&nbsp;{user.email}
+                  </div>
+                  <div className={styles.online}>Chat Now!</div>
+                </a>
+              );
+            })
+          ) : (
             <div className={styles.chatMember}>
               <div className={styles.profileName}>No user found.</div>
               <div className={styles.profileName}>Search Now!</div>
