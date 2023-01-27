@@ -12,7 +12,9 @@ const LoginPage = () => {
   // chect if already logged in
   useEffect(() => {
     document.title = 'Login';
-    if (auth.isLoggedIn) navigate('/chat-list');
+    if (auth.isLoggedIn) {
+      navigate('/chat-list');
+    }
   }, [auth, navigate]);
 
   // states

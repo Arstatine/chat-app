@@ -12,7 +12,9 @@ const RegisterPage = () => {
   // check if logged in
   useEffect(() => {
     document.title = 'Register';
-    if (auth.isLoggedIn) navigate('/chat-list');
+    if (auth.isLoggedIn) {
+      navigate('/chat-list');
+    }
   }, [auth, navigate]);
 
   // states

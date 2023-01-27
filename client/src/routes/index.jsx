@@ -6,6 +6,7 @@ import RegisterPage from '../views/register';
 import NotFound from '../views/error';
 import ChatList from '../views/chat-list/ChatList';
 import Messages from '../views/messages/Messages';
+import Profile from '../views/profile/Profile';
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
       <Route path='register' element={<RegisterPage />} />
       <Route path='chat-list' element={<ChatList />} />
       <Route path='messages/:to' element={<Messages />} />
+      <Route path='profile' element={<Profile />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   );

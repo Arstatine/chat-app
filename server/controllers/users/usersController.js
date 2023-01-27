@@ -8,7 +8,7 @@ const createUser = async (req, res, next) => {
     const findUserEmail = await Users.find({ email });
     if (findUserEmail != '') return res.json({ err: 'Email already exist.' });
 
-    const avatar = 'https://avatars.dicebear.com/api/bottts/' + email + '.svg';
+    const avatar = 'https://api.dicebear.com/5.x/adventurer/svg?seed=' + email;
 
     const hashPassword = await bcryptjs.hash(password, 10);
 
@@ -147,6 +147,35 @@ const userLogout = async (req, res, next) => {
   }
 };
 
+const updateUser = async (req, res, next) => {
+  try {
+    if (!req.session.user_id) return res.json({ isLoggedIn: false });
+
+    const _id = req.session.user_id;
+    const { avatar, name, password } = req.body;
+
+    const findUser = await Users.findById({ _id });
+
+    if (avatar != null) {
+      findUser.avatar = avatar;
+    }
+
+    if (password !== '') {
+      const hashPassword = await bcryptjs.hash(password, 10);
+      findUser.password = hashPassword;
+    }
+
+    if (name !== '') {
+      findUser.name = name;
+    }
+
+    await findUser.save();
+    return res.json({ success: 'Your profile was successfully updated.' });
+  } catch (error) {
+    next(e);
+  }
+};
+
 module.exports = {
   createUser,
   searchUser,
@@ -155,4 +184,5 @@ module.exports = {
   userLogin,
   userLogout,
   fetchAllUser,
+  updateUser,
 };

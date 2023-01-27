@@ -17,6 +17,22 @@ export default function Messages() {
   const SECRET_KEY = process.env.REACT_APP_SECRET_KEY;
   const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
+  // responsive chat list
+  const chatListRef = useRef(null);
+  const [height, setHeight] = useState(0);
+  const [wrapper, setWrapper] = useState(false);
+
+  if (chatListRef.current != null && !wrapper) {
+    setWrapper(true);
+    setHeight(chatListRef.current.clientHeight);
+  }
+
+  const handleResize = () => {
+    setHeight(chatListRef.current.clientHeight);
+  };
+
+  window.addEventListener('resize', handleResize);
+
   // socekt config
   const socket = useRef();
   socket.current = io(SERVER_URL, {
@@ -118,7 +134,7 @@ export default function Messages() {
   // fetch receiver and messages
   useEffect(() => {
     setIsLoading(true);
-    document.title = user?.name || 'Messages';
+    user ? (document.title = user?.name) : (document.title = 'Loading...');
 
     if (receiverID.to !== '') {
       if (!isFetch) {
@@ -143,6 +159,7 @@ export default function Messages() {
     receiverID.to,
     user?.err,
     user?.name,
+    user,
   ]);
 
   // realtime message receive
@@ -245,7 +262,7 @@ export default function Messages() {
           close={() => setOpenModal(false)}
           onDelete={handleDeleteConversation}
         />
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} ref={chatListRef}>
           <div className={styles.header}>
             <div className={styles.profileName}>
               <a href='/chat-list' className={styles.backBtn}>
@@ -268,7 +285,7 @@ export default function Messages() {
               <Icon icon='ic:baseline-delete' inline={true} />
             </button>
           </div>
-          <div className={styles.chats}>
+          <div className={styles.chats} style={{ height: height - 150 + 'px' }}>
             {message.length ? (
               message.map((mes, index) => {
                 if (mes.sender === senderID) {

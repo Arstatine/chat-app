@@ -45,7 +45,7 @@ export default function ChatList() {
       setIsLoading(true);
     }
 
-    document.title = 'Chat List';
+    authUser ? (document.title = 'Chat List') : (document.title = 'Loading...');
     return setIsLoading(false);
   }, [authUser, fetchAllUser, fetchUser, isAuth, isFetch, navigate, users]);
 
@@ -122,7 +122,7 @@ export default function ChatList() {
               className={styles.dropdownContent}
               style={{ display: menuClick ? 'block' : 'none' }}
             >
-              <a href='/#'>{authUser?.findUser?.name}</a>
+              <a href='/profile'>{authUser?.findUser?.name}</a>
               <div onClick={handleLogout}>Logout</div>
             </div>
           </div>

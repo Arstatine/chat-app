@@ -7,7 +7,8 @@ const { usersController } = require('../controllers');
 router
   .route('/')
   .post(auth, usersController.createUser)
-  .get(auth, usersController.isLoggedIn);
+  .get(auth, usersController.isLoggedIn)
+  .put(auth, usersController.updateUser);
 
 router.route('/all').get(auth, usersController.fetchAllUser);
 

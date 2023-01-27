@@ -1,0 +1,165 @@
+.centerLoading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url(../../assets/img1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+
+.wrapper {
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  position: relative;
+  height: 90vh;
+  min-height: 90vh;
+  width: 600px;
+  max-width: 600px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.avatar {
+  background-color: #3b8595;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  color: white;
+  object-fit: cover;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.backBtn {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 50%;
+  height: 50px;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  color: #555;
+  z-index: 999;
+  margin: 20px;
+}
+
+.backBtn:hover {
+  background-color: #ddd;
+}
+
+.content {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.content img {
+  width: 40%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: #3b8595;
+}
+
+.inputContainer {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputContainer h3 {
+  width: 100%;
+  text-align: left;
+}
+
+.inputs {
+  font-family: 'Montserrat', sans-serif;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 1.25rem;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.inputs[disabled] {
+  background-color: #ccc;
+}
+
+.btnContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.saveBtn {
+  background-color: #3b8595;
+  color: #fff;
+  height: 50px;
+  border: none;
+  margin: 0;
+  border-radius: 5px;
+  padding: 0 20px;
+  outline: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.cancelBtn {
+  background-color: #ddd;
+  color: #555;
+  height: 50px;
+  border: none;
+  margin: 0;
+  border-radius: 5px;
+  padding: 0 20px;
+  outline: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background-color: #2d798a;
+}
+
+.cancelBtn:hover {
+  background-color: #ccc;
+}
+
+.success {
+  text-align: center;
+  background-color: #42ba96;
+  padding: 20px;
+  width: 100%;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 1.25rem;
+}
