@@ -105,11 +105,9 @@ export default function Profile() {
       />
       <div className={styles.wrapper}>
         <div className={styles.header}>
-          <div className={styles.profileName}>
-            <a href='/chat-list' className={styles.backBtn}>
-              <Icon icon='ic:round-arrow-back' inline={true} />
-            </a>
-          </div>
+          <a href='/chat-list' className={styles.backBtn}>
+            <Icon icon='ic:round-arrow-back' inline={true} />
+          </a>
         </div>
         <div className={styles.content}>
           <div className={styles.inputContainer}>
@@ -134,66 +132,72 @@ export default function Profile() {
                 {success}
               </motion.div>
             )}
-            <img
-              src={avatarKeyword || authUser?.findUser?.avatar}
-              alt='Profile'
-            />
-            <h3>Avatar</h3>
-            <input
-              type='text'
-              className={styles.inputs}
-              placeholder='Keyword for Avatar'
-              name='message'
-              onChange={handleChangeAvatar}
-            />
-            <br />
-            <h3>Profile</h3>
-            <input
-              type='text'
-              className={styles.inputs}
-              placeholder='Name'
-              value={name}
-              name='message'
-              onChange={(e) => {
-                setName(e.target.value);
-                setSuccess('');
-              }}
-            />
-            <input
-              type='text'
-              className={styles.inputs}
-              placeholder='Email Address'
-              value={authUser?.findUser?.email || ''}
-              name='message'
-              readOnly
-              disabled
-            />
-            <input
-              type='password'
-              className={styles.inputs}
-              placeholder='Password'
-              name='message'
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setSuccess('');
-              }}
-            />
-            <br />
-            <div className={styles.btnContainer}>
-              <button
-                type='button'
-                className={styles.cancelBtn}
-                onClick={handleCancel}
-              >
-                Cancel
-              </button>
-              <button
-                type='button'
-                className={styles.saveBtn}
-                onClick={handleSave}
-              >
-                Save
-              </button>
+            <div className={styles.image}>
+              <img
+                className={styles.img}
+                src={avatarKeyword || authUser?.findUser?.avatar}
+                alt='Profile'
+              />
+            </div>
+
+            <div className={styles.divider}>
+              <h3>Avatar</h3>
+              <input
+                type='text'
+                className={styles.inputs}
+                placeholder='Keyword for Avatar'
+                name='message'
+                onChange={handleChangeAvatar}
+              />
+              <br />
+              <h3>Profile</h3>
+              <input
+                type='text'
+                className={styles.inputs}
+                placeholder='Name'
+                value={name}
+                name='message'
+                onChange={(e) => {
+                  setName(e.target.value);
+                  setSuccess('');
+                }}
+              />
+              <input
+                type='text'
+                className={styles.inputs}
+                placeholder='Email Address'
+                value={authUser?.findUser?.email || ''}
+                name='message'
+                readOnly
+                disabled
+              />
+              <input
+                type='password'
+                className={styles.inputs}
+                placeholder='Password'
+                name='message'
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setSuccess('');
+                }}
+              />
+              <br />
+              <div className={styles.btnContainer}>
+                <button
+                  type='button'
+                  className={styles.cancelBtn}
+                  onClick={handleCancel}
+                >
+                  Cancel
+                </button>
+                <button
+                  type='button'
+                  className={styles.saveBtn}
+                  onClick={handleSave}
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -23,6 +23,19 @@ export default function ChatList() {
   const [isAuth, setIsAuth] = useState(false);
   const [isFetch, setIsFetch] = useState(false);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(`/api/users`);
+      if (response?.data != null) {
+        if (response?.data?.isLoggedIn === false) {
+          navigate('/login');
+        }
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   // fetch contact list and user info
   useEffect(() => {
     if (!isFetch) {
@@ -33,12 +46,6 @@ export default function ChatList() {
     if (!isAuth) {
       fetchUser();
       setIsAuth(true);
-    }
-
-    if (authUser != null) {
-      if (authUser?.isLoggedIn === false) {
-        navigate('/login');
-      }
     }
 
     while (!users == null) {
@@ -75,6 +82,7 @@ export default function ChatList() {
   // logout
   const handleLogout = () => {
     setIsLoading(true);
+    document.title = 'Logging out...';
     setTimeout(async () => {
       await axios.get(`/api/users/logout`);
       navigate('/login');

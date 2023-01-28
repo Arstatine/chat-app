@@ -28,8 +28,6 @@
   max-width: 600px;
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
-  overflow: hidden;
-  overflow-y: auto;
 }
 
 .avatar {
@@ -76,19 +74,38 @@
   flex-direction: column;
 }
 
-.content img {
-  width: 40%;
+.image {
+  text-align: center;
+}
+
+.img {
+  width: 50%;
   aspect-ratio: 1/1;
   border-radius: 50%;
   background-color: #3b8595;
 }
 
 .inputContainer {
-  width: 75%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 20px 15%;
+  margin: 25px 0;
+  gap: 10px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: auto;
   gap: 10px;
 }
 
@@ -162,4 +179,10 @@
   color: #fff;
   border-radius: 5px;
   font-size: 1.25rem;
+}
+
+@media (max-height: 660px) {
+  .inputContainer {
+    flex-direction: row;
+  }
 }

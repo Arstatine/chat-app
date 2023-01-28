@@ -1,21 +1,28 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Home.css';
 import { Icon } from '@iconify/react';
-import { Context } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import axios from '../../lib/axiosConfig';
+import HashLoader from 'react-spinners/HashLoader';
 
 const LoginPage = () => {
-  const auth = useContext(Context);
   const navigate = useNavigate();
 
-  // chect if already logged in
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     document.title = 'Login';
-    if (auth.isLoggedIn) {
-      navigate('/chat-list');
-    }
-  }, [auth, navigate]);
+    const fetchUser = async () => {
+      const response = await axios.get(`/api/users`);
+      if (response?.data != null) {
+        if (response?.data?.isLoggedIn === true) {
+          navigate('/chat-list');
+        }
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   // states
   const [email, setEmail] = useState('');
@@ -32,15 +39,28 @@ const LoginPage = () => {
     });
 
     if (!res.data?.err) {
-      setError('');
-      navigate('/chat-list');
+      setIsLoading(true);
+      setTimeout(() => {
+        setError('');
+        navigate('/chat-list');
+      }, 1500);
     } else {
       setError(res.data?.err);
       return;
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className='centerLoading'>
+      <HashLoader
+        color={'#3b8595'}
+        loading={isLoading}
+        size={150}
+        aria-label='Loading Spinner'
+        data-testid='loader'
+      />
+    </div>
+  ) : (
     <div className='login-page'>
       <div className='form'>
         <form className='login-form' onSubmit={handleLoginForm}>
