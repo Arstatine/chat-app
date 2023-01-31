@@ -1,5 +1,8 @@
 # Chat Appliction
 ## How to run?
+Intall the latest version of `Node.js`
+Visit the link here: https://nodejs.org/en/
+
 ## Client
 In the client project directory , you can run:
 
