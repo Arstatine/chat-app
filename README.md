@@ -27,6 +27,10 @@ After installing, run:
 It runs the app in the development mode.\
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 
+### Database
+For database install Compass MongoDB or use Cloud MongoDB 
+Visit link here: https://www.mongodb.com/cloud
+
 ## Screenshots
 
 ### Home Page
