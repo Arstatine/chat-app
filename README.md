@@ -4,7 +4,7 @@ Intall the latest version of `Node.js`
 Visit the link here: https://nodejs.org/en/
 
 ## Client
-In the client project directory , you can run:
+In the client project directory , open new terminal and run:
 
 ### `npm install`
 It install all dependencies for your project.
@@ -16,7 +16,7 @@ It runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Server
-In the server project directory , you can run:
+In the server project directory , open new terminal and run:
 
 ### `npm install`
 It install all dependencies for your project.
